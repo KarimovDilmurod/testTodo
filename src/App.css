@@ -1,7 +1,7 @@
 .container {
     display: flex;
     height: 100vh;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     background: #CACFD2;
