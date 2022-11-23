@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    height: 100vh;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    background: #CACFD2;
+}
+.textContainer {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 800;
+}
+.inputContainer {
+    padding: 5px;
+    background: rgb(209, 207, 215);
+    border-radius: 8px;
+}
+.input {
+    border: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
