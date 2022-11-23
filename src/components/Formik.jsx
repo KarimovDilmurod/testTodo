@@ -13,11 +13,11 @@ export const Formik = () => {
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null);
     const [loading,setLoading] = useState(false)
-
+    
     const [progresspercent, setProgresspercent] = useState(0);
 
     console.log(progresspercent);
-    console.log();
+    
 
     const hendleSubmit = async (e) => {
       e.preventDefault()

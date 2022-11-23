@@ -9,7 +9,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 function App() {
   const [list,setList] = useState([])
-
   useEffect(()=> {
     const q = query(collection(db,'todos'))
     const asd = onSnapshot(q, (query,(quer)=> {

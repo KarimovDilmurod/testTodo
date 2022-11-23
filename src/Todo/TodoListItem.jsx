@@ -3,11 +3,12 @@ import { StyleSheet,css } from "aphrodite";
 import {serverTimestamp,doc, deleteDoc,updateDoc} from 'firebase/firestore'
 import { db } from "../firebase";
 
-
 export const TodoListItem = ({item}) => {
 
     const [active,setActive] = useState(false)
     const [title, setTitle] = useState(item.title)
+    const today = new Date().toLocaleDateString()
+    const endsDate = new Date(item.endAt).toLocaleDateString()
 
     const updateItem = async(e) => {
     e.preventDefault()
@@ -16,7 +17,8 @@ export const TodoListItem = ({item}) => {
       timestamp: serverTimestamp()
     })
     setActive(false)
-  } 
+    } 
+
     const check = async (item) => {
         await updateDoc(doc(db,'todos', item.id),{
             completed: !item.completed
@@ -31,11 +33,9 @@ export const TodoListItem = ({item}) => {
         setActive(!active)
     }
 
-    console.log(item);
-
     return(
         <div className={item.completed ? css(styles.completed):css(styles.container)}>
-            <div className={css(styles.textContent)}>
+            <div className={today > endsDate ?css(styles.endsAt) :  css(styles.textContent)}>
                 <div className={css(styles.titleContent)}>
                     <input onChange={()=> check(item)} type="checkbox" checked={item.completed ? 'checked' : '' } className={css(styles.chek)}/>
                    
@@ -48,7 +48,7 @@ export const TodoListItem = ({item}) => {
                     <a href={item.file} download={item.file}> downloadFile</a>
                 </button> : null}
                 
-                <p>{item.endAt}</p>
+                <p>{endsDate}</p>
                 </div>
                 
             </div>
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         padding:'0.5rem 0rem 0.5rem 0.3rem',
         marginBottom: '0.5rem'
-        
     },
     text: {
         color: '#2C3E50',
@@ -132,5 +131,13 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
         fontSize:'0.8em',
         alignItems:'flex-start'
-    }
+    },
+    endsAt: {
+        display: 'flex',
+        marginRight: '1rem',
+        width:'100%',
+        justifyContent:'space-between',
+        background:'#BFC9CA',
+        borderRadius:'0.5rem'
+    },
 })
