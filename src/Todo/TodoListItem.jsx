@@ -34,8 +34,8 @@ export const TodoListItem = ({item}) => {
     }
 
     return(
-        <div className={item.completed ? css(styles.completed):css(styles.container)}>
-            <div className={today > endsDate ?css(styles.endsAt) :  css(styles.textContent)}>
+        <div className={item.completed ? css(styles.completed) : css(styles.container) }>
+            <div className={css(styles.textContent)}>
                 <div className={css(styles.titleContent)}>
                     <input onChange={()=> check(item)} type="checkbox" checked={item.completed ? 'checked' : '' } className={css(styles.chek)}/>
                    
@@ -48,7 +48,7 @@ export const TodoListItem = ({item}) => {
                     <a href={item.file} download={item.file}> downloadFile</a>
                 </button> : null}
                 
-                <p>{endsDate}</p>
+                <p className={today > endsDate ? css(styles.endData) : css(styles.data)}>{endsDate}</p>
                 </div>
                 
             </div>
@@ -60,8 +60,8 @@ export const TodoListItem = ({item}) => {
             </form>
                     :
             <div className={css(styles.buttonContainer)}>
-                <button className={css(styles.button)}  onClick={item.completed?null:() => edite(item)}>edit</button>
-                <button className={css(styles.button)} onClick={item.completed?null:() => deliteItem(item.id)}>delete</button>
+                <button className={css(styles.button)}  onClick={item.completed ? null : () => edite(item)}>edit</button>
+                <button className={css(styles.button)} onClick={item.completed ? null : () => deliteItem(item.id)}>delete</button>
             </div>
             }
         </div>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         width:'100%',
         borderRadius:'0.5rem',
-        background: '#48C9B0',
+        background: '#CACFD2',
         flexDirection: 'row',
         justifyContent:'space-between',
         padding:'0.5rem 0rem 0.5rem 0.3rem',
@@ -140,4 +140,10 @@ const styles = StyleSheet.create({
         background:'#BFC9CA',
         borderRadius:'0.5rem'
     },
+    data: {
+        color: '#0FBA8E'
+    },
+    endData: {
+        color: '#C92518'
+    }
 })
